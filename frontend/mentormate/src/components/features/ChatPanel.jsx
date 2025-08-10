@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../../constants/constant';
 
 const ChatPanel = ({ isUser, title, messages, setMessages }) => {
   const [input, setInput] = useState('');
@@ -54,7 +55,7 @@ const ChatPanel = ({ isUser, title, messages, setMessages }) => {
       }
 
       const response = await axios.post(
-        'http://localhost:5000/api/messages',
+        BASE_URL+ 'api/messages',
         { text: input },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -1,25 +1,3 @@
-// import { useContext } from 'react';
-// import { AuthContext } from '../context/AuthContext';
-// import Header from '../components/common/Header';
-// import Footer from '../components/common/Footer';
-// import ChatPanel from '../components/features/ChatPanel';
-
-// const ChatPage = () => {
-//   const { user } = useContext(AuthContext);
-
-//   return (
-//     <div className="min-h-screen flex flex-col">
-//       <Header />
-//       <main className="flex-grow p-4 flex flex-col md:flex-row gap-4">
-//         <ChatPanel title={`User: ${user?.username || 'You'}`} isUser={true} />
-//         <ChatPanel title="Mentor" isUser={false} />
-//       </main>
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// export default ChatPage;
 
 // ChatPage.jsx
 import { useContext, useEffect, useState } from 'react';
@@ -28,6 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import ChatPanel from '../components/features/ChatPanel';
+import { BASE_URL } from '../constants/constant';
 
 const ChatPage = () => {
   const { user } = useContext(AuthContext);
@@ -39,7 +18,7 @@ const ChatPage = () => {
       try {
         const token = localStorage.getItem('token');
         if (!token) return;
-        const response = await axios.get('http://localhost:5000/api/messages', {
+        const response = await axios.get(BASE_URL +'api/messages', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setMessages(response.data);

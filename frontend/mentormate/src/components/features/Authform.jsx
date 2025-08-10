@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../../constants/constant';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -14,7 +15,7 @@ const AuthForm = () => {
     e.preventDefault();
     setError('');
     
-    const url = `http://localhost:5000/api/auth/${isLogin ? 'login' : 'signup'}`;
+    const url = `${BASE_URL}${isLogin ? 'login' : 'signup'}`;
     const payload = isLogin ? { email, password } : { username, email, password };
 
     try {
